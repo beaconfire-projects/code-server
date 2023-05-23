@@ -29,13 +29,13 @@ podTemplate() {
                     echo 'Finish to build IDE !!!' 
                 }
             }
-            // container('docker') {
-            //     stage('Build a Docker Project') {
-            //         sh('docker build -t beaconfireiic/${JOB_NAME%%_*}:$(cat GIT_BRANCH)-$BUILD_ID-k8s .')
-            //         sh('docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY')
-            //         sh('docker push beaconfireiic/${JOB_NAME%%_*}:$(cat GIT_BRANCH)-$BUILD_ID-k8s')
-            //     }
-            // }
+            container('docker') {
+                stage('Build a Docker Project') {
+                    sh('docker build -t beaconfireiic/${JOB_NAME%%_*}:${VERSION} .')
+                    sh('docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY')
+                    sh('docker push beaconfireiic/${JOB_NAME%%_*}:${VERSION}')
+                }
+            }
         }
     }
 }
