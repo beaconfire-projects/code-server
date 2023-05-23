@@ -31,8 +31,8 @@ podTemplate() {
             }
             container('docker') {
                 stage('Build a Docker Project') {
-                    sh('docker build -t beaconfireiic/${JOB_NAME%%_*}:${VERSION} .')
                     sh('docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY')
+                    sh('docker build -t beaconfireiic/${JOB_NAME%%_*}:${VERSION} .')
                     sh('docker push beaconfireiic/${JOB_NAME%%_*}:${VERSION}')
                 }
             }
