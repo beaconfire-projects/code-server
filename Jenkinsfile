@@ -15,6 +15,7 @@ podTemplate() {
                 stage('Build a Node Project') {
                     echo 'Start to build IDE ...'
                     sh('echo $VERSION')
+                    sh('git config --global --add safe.directory /home/jenkins/agent/workspace/code-server')
                     sh('git submodule update --init')
                     sh('quilt push -a')
                     sh('yarn')
